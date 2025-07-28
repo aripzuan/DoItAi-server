@@ -122,7 +122,7 @@ export const generateImage = async (req, res) => {
         await sql` INSERT INTO creations (user_id, prompt, content, type, publish)
             VALUES (${userId}, ${prompt}, ${secure_url}, 'image', ${publish ?? false}) `;
 
-        res.json({success: true, secure_url});
+        res.json({success: true, content: secure_url});
         
     } catch (error) {
         console.log(error.message);
@@ -135,7 +135,7 @@ export const generateImage = async (req, res) => {
 export const removeImageBackground = async (req, res) => {
     try {
         const {userId} = req.auth();
-        const {image} = req.file;
+        const image = req.file;
         const plan = req.plan;
         
         
@@ -156,7 +156,7 @@ export const removeImageBackground = async (req, res) => {
         await sql` INSERT INTO creations (user_id, prompt, content, type)
             VALUES (${userId}, 'Remove background from image', ${secure_url}, 'image'`;
 
-        res.json({success: true, secure_url});
+        res.json({success: true, content: secure_url});
         
     } catch (error) {
         console.log(error.message);
@@ -169,7 +169,7 @@ export const removeImageBackground = async (req, res) => {
 export const removeImageObject = async (req, res) => {
     try {
         const {userId} = req.auth();
-        const {image} = req.file;
+        const image = req.file;
         const plan = req.plan;
         const {object} = req.body;
         
@@ -203,7 +203,7 @@ export const removeImageObject = async (req, res) => {
 export const resumeReview = async (req, res) => {
     try {
         const {userId} = req.auth();
-        const {resume} = req.file;
+        const resume = req.file;
         const plan = req.plan;
         
         

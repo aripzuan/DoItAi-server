@@ -154,7 +154,7 @@ export const removeImageBackground = async (req, res) => {
             ]})
 
         await sql` INSERT INTO creations (user_id, prompt, content, type)
-            VALUES (${userId}, 'Remove background from image', ${secure_url}, 'image'`;
+            VALUES (${userId}, 'Remove background from image', ${secure_url}, 'image')`;
 
         res.json({success: true, content: secure_url});
         
@@ -188,7 +188,7 @@ export const removeImageObject = async (req, res) => {
         });
 
         await sql` INSERT INTO creations (user_id, prompt, content, type)
-            VALUES (${userId}, ${`Removed ${object} from image`}, ${imageUrl}, 'image'`;
+            VALUES (${userId}, ${`Removed ${object} from image`}, ${imageUrl}, 'image')`;
 
         res.json({success: true, content: imageUrl});
         
@@ -230,7 +230,7 @@ export const resumeReview = async (req, res) => {
         const content = response.choices[0].message.content;
 
         await sql` INSERT INTO creations (user_id, prompt, content, type)
-            VALUES (${userId}, 'Review the uploaded resume', ${content}, 'resume-review'`;
+            VALUES (${userId}, 'Review the uploaded resume', ${content}, 'resume-review')`;
 
         res.json({success: true, content});
         
